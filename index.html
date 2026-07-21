@@ -113,7 +113,72 @@ Namaste! Main AI Samadhan Axom hoon. 👋
 
 <script>
 
-// JavaScript hum Part 2 me add karenge.
+function addMessage(text, type) {
+  const chat = document.getElementById("chat");
+
+  const div = document.createElement("div");
+  div.className = "message " + type;
+  div.innerHTML = text;
+
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function sendMessage() {
+
+  let input = document.getElementById("msg");
+  let text = input.value.trim();
+
+  if (text === "") return;
+
+  addMessage(text, "user");
+
+  input.value = "";
+
+  let reply = "Maine aapka message receive kar liya.";
+
+  let lower = text.toLowerCase();
+
+  if (lower.includes("hello") || lower.includes("hi")) {
+    reply = "Namaste! Main AI Samadhan Axom hoon. 😊";
+  } else if (lower.includes("name")) {
+    reply = "Mera naam AI Samadhan Axom hai.";
+  } else if (lower.includes("assam")) {
+    reply = "Assam Bharat ka ek sundar rajya hai.";
+  }
+
+  addMessage(reply, "ai");
+
+  let speech = new SpeechSynthesisUtterance(reply);
+  speech.lang = "hi-IN";
+  window.speechSynthesis.speak(speech);
+}
+
+document.getElementById("msg").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    sendMessage();
+  }
+});
+
+function startVoice() {
+
+  if (!("webkitSpeechRecognition" in window)) {
+    alert("Speech Recognition supported nahi hai.");
+    return;
+  }
+
+  let recognition = new webkitSpeechRecognition();
+  recognition.lang = "hi-IN";
+
+  recognition.onresult = function(event) {
+    document.getElementById("msg").value =
+      event.results[0][0].transcript;
+
+    sendMessage();
+  };
+
+  recognition.start();
+}
 
 </script>
 
