@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -63,7 +63,21 @@ let chat=document.getElementById("chat");
 
 chat.innerHTML+="<b>You:</b> "+input+"<br>";
 
-let reply="Maine aapka message receive kar liya.";
+let reply = "";
+
+let text = input.toLowerCase();
+
+if (text.includes("hello") || text.includes("hi")) {
+  reply = "Namaste! Main AI Samadhan Axom hoon. Aap kaise hain?";
+} else if (text.includes("name")) {
+  reply = "Mera naam AI Samadhan Axom hai.";
+} else if (text.includes("assam")) {
+  reply = "Assam Bharat ke uttar-purvi rajyon me se ek hai.";
+} else if (text.includes("thank")) {
+  reply = "Aapka swagat hai!";
+} else {
+  reply = "Maaf kijiye, abhi main is sawal ka jawab dene ke liye update nahi hoon.";
+}
 
 chat.innerHTML+="<b>AI:</b> "+reply+"<br><br>";
 
