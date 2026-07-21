@@ -83,7 +83,11 @@ if(input==="") return;
 
 let chat=document.getElementById("chat");
 
-chat.innerHTML+="<b>You:</b> "+input+"<br>";
+chat.innerHTML+="<b>You:</b> "+input+"<br>";let speech = new SpeechSynthesisUtterance(reply);
+speech.lang = "hi-IN";
+speech.rate = 1;
+speech.pitch = 1;
+window.speechSynthesis.speak(speech);
 
 let reply = "";
 
