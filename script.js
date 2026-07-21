@@ -1,4 +1,4 @@
-const API_KEY = "AQ.Ab8RN6J6ZYb61y4ToIGMk_I48v44z9rZuWeqQ77Jlt4uHvS";
+const API_KEY = "AQ.Ab8RN6J6ZYb61y4ToIGMk_I48v44z9rZuWeqQ77Jlt4uHvNg";
 
 function addMessage(text, type) {
   const chat = document.getElementById("chat");
