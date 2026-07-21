@@ -54,7 +54,25 @@ cursor:pointer;
 
 <script>document.getElementById("msg").addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
-    sendMessage();
+    sendMessage()function startVoice() {
+
+if (!('webkitSpeechRecognition' in window)) {
+  alert("Speech Recognition is not supported in your browser.");
+  return;
+}
+
+let recognition = new webkitSpeechRecognition();
+
+recognition.lang = "hi-IN";
+recognition.start();
+
+recognition.onresult = function(event) {
+  document.getElementById("msg").value =
+    event.results[0][0].transcript;
+  sendMessage();
+};
+
+};
   }
 });
 function sendMessage(){
