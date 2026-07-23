@@ -62,7 +62,7 @@ async function sendMessage() {
 
   const chat = document.getElementById("chat");
 
-  chat.innerHTML += "<b>You:</b> " + message + "<br>";
+  chat.innerHTML += "<b>AI:</b> " + JSON.stringify(data, null, 2) + "<br><br>";
 
   input.value = "";
 
