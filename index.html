@@ -84,7 +84,13 @@ async function sendMessage() {
     const data = await response.json();
 
     if (data.reply) {
-      chat.innerHTML += "<b>AI:</b> " + data.reply + "<br><br>";
+     if (data.error) {
+  if (JSON.stringify(data.error).includes("429")) {
+    chat.innerHTML += "<b>AI:</b> Gemini API ki daily quota khatam ho gayi hai. Kripya baad mein phir se koshish karein.<br><br>";
+  } else {
+    chat.innerHTML += "<b>AI:</b> " + (data.error.message || "Koi error aaya hai.") + "<br><br>";
+  }
+}
     } else if (data.error) {
       chat.innerHTML += "<b>AI Error:</b> " + JSON.stringify(data.error) + "<br><br>";
     } else {
