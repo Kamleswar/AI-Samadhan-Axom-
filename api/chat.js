@@ -40,9 +40,11 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ reply });
 
-  } catch (err) {
-    return res.status(500).json({
-      error: err.message,
-    });
-  }
+  } } catch (err) {
+  console.error(err);
+
+  return res.status(200).json({
+    reply: "⚠️ AI service abhi uplabdh nahi hai ya daily free limit khatam ho gayi hai. Kripya baad me phir try karein."
+  });
+}
 }
