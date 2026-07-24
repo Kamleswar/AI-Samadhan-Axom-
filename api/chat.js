@@ -31,7 +31,9 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(response.status).json(data);
+      return res.status(200).json({
+        reply: "⚠️ AI service ki daily free limit khatam ho gayi hai. Kripya baad me phir try karein."
+      });
     }
 
     const reply =
@@ -40,11 +42,11 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ reply });
 
-  } } catch (err) {
-  console.error(err);
+  } catch (err) {
+    console.error(err);
 
-  return res.status(200).json({
-    reply: "⚠️ AI service abhi uplabdh nahi hai ya daily free limit khatam ho gayi hai. Kripya baad me phir try karein."
-  });
-}
+    return res.status(200).json({
+      reply: "⚠️ AI service abhi uplabdh nahi hai. Kripya baad me phir try karein."
+    });
+  }
 }
