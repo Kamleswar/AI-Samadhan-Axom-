@@ -1,10 +1,10 @@
-export default async function handler(req, res) { 
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const API_KEY = process.env.GEMINI_API_KEY;
   const { message } = req.body;
+  const API_KEY = process.env.GEMINI_API_KEY;
 
   try {
     const response = await fetch(
@@ -12,19 +12,19 @@ export default async function handler(req, res) {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           contents: [
             {
               parts: [
                 {
-                  text: message
-                }
-              ]
-            }
-          ]
-        })
+                  text: message,
+                },
+              ],
+            },
+          ],
+        }),
       }
     );
 
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
 
   } catch (err) {
     return res.status(500).json({
-      error: err.message
+      error: err.message,
     });
   }
-};
+}
